@@ -1,0 +1,71 @@
+o 4 6 a 3
+o 5 6 a 3
+o 5 7 a 3
+o 4 7 a 3
+d 20
+o 3 5 a 3
+o 3 8 a 3
+o 6 5 a 3
+o 6 8 a 3
+o 4 6 a 2
+o 5 6 a 2
+o 5 7 a 2
+o 4 7 a 2
+d 20
+o 2 5 a 3
+o 2 8 a 3
+o 7 5 a 3
+o 7 8 a 3
+o 3 5 a 2
+o 6 5 a 2
+o 3 8 a 2
+o 6 8 a 2
+o 4 6 a 1
+o 5 6 a 1
+o 5 7 a 1
+o 4 7 a 1
+d 20
+o 1 6 a 3
+o 1 7 a 3
+o 8 7 a 3
+o 8 6 a 3
+o 2 5 a 2
+o 2 8 a 2
+o 7 5 a 2
+o 7 8 a 2
+o 3 5 a 1
+o 6 5 a 1
+o 3 8 a 1
+o 6 8 a 1
+f 4 6 
+f 5 6 
+f 5 7 
+f 4 7 
+d 20
+o 1 6 a 2
+o 1 7 a 2
+o 8 7 a 2
+o 8 6 a 2
+o 2 5 a 1
+o 2 8 a 1
+o 7 8 a 1
+o 7 5 a 1
+f 3 5 
+f 6 5 
+f 3 8 
+f 6 8 
+d 20
+o 1 6 a 1
+o 1 7 a 1
+o 8 7 a 1
+o 8 6 a 1
+f 2 5 
+f 7 5 
+f 7 8 
+f 2 8 
+d 20
+f 1 6 
+f 1 7 
+f 8 7 
+f 8 6 
+d 20

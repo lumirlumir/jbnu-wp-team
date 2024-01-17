@@ -1,0 +1,958 @@
+﻿<Window x:Class="Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Player"
+        xmlns:my="clr-namespace:Player.Classes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="580" Width="1280"
+        Keyboard.PreviewKeyDown="Key_Down">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BackCol"  Color="{Binding ElementName=BackColor, Path=SelectedColorText}" />
+        <SolidColorBrush x:Key="BorderCol" Color="{Binding ElementName=BorderColor, Path=SelectedColorText}"/>
+        <Style x:Key="Origin" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource BackCol}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Ink Free"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderCol}"/>
+            <Setter Property="BorderThickness" Value="8"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="18" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                Background="{TemplateBinding Background}"
+                                x:Name="border">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <Style x:Key="Bank" TargetType="Button" BasedOn="{StaticResource Origin}">
+            <Setter Property="Background" Value="#FFA7E5CE"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Width" Value="62"/>
+            <Setter Property="BorderThickness" Value="6"/>
+            <EventSetter Event="Click" Handler="Bank_Click"/>
+        </Style>
+        <ContextMenu x:Key="contextMenu" x:Name="contextm">
+            <ContextMenu.Items>
+                <MenuItem Header="Load" Click="Load_Click"/>
+                <MenuItem Header="Save" PreviewMouseDown="Save_Click"/>
+                <MenuItem Header="Volume" PreviewMouseDown="Volume_Click"/>
+                <MenuItem Header="Panning" PreviewMouseDown="Panning_Click"/>
+                <MenuItem Header="Color" PreviewMouseDown="Color_Click"/>
+                <MenuItem x:Name="viewNon"
+                                 IsCheckable="True"
+                                 Header="NonClickColor"
+                                 IsChecked="{Binding Source ={x:Reference ButtonBack},Path=Checkview,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="SpeedRatio" PreviewMouseDown="Speed_Click"/>
+            </ContextMenu.Items>
+        </ContextMenu>
+        <Style x:Key="Main" TargetType="Button" BasedOn="{StaticResource Origin}">
+
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="ContextMenu" Value="{StaticResource contextMenu}"/>
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="PlaySoundD"/>
+            <EventSetter Event="Drop" Handler="FileDrop"/>
+        </Style>
+        <Style x:Key="buttonset" TargetType="Button">
+            <Setter Property="Background" Value="#FFDCEDC1"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="Player" TargetType="MediaElement">
+            <EventSetter Event="MediaEnded" Handler="MediaElement_MediaEnded"/>
+            <Setter Property="Tag" Value="Not"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainScreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="43*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="F1"
+                Grid.Row="0"
+				Grid.Column="2"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="Now"
+                Foreground="LightGray"
+                Background="White"
+                BorderBrush="LightGray"
+                Tag="Bank1"/>
+        <Button x:Name="F2"
+                Grid.Row="0"
+				Grid.Column="4"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F2"
+                Tag="Bank2"/>
+        <Button x:Name="F3"
+                Grid.Row="0"
+				Grid.Column="6"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F3"
+                Tag="Bank3"/>
+        <Button x:Name="F4"
+                Grid.Row="0"
+				Grid.Column="8"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F4"
+                Tag="Bank4"/>
+        <Button x:Name="F5"
+                Grid.Row="0"
+				Grid.Column="10"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F5"
+                Tag="Bank5"/>
+        <Button x:Name="F6"
+                Grid.Row="0"
+				Grid.Column="12"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F6"
+                Tag="Bank6"/>
+        <Button x:Name="F7"
+                Grid.Row="0"
+				Grid.Column="14"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F7"
+                Tag="Bank7"/>
+        <Button x:Name="F8"
+                Grid.Row="0"
+				Grid.Column="16"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F8"
+                Tag="Bank8"/>
+        <Button x:Name="F9"
+                Grid.Row="0"
+				Grid.Column="18"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F9"
+                Tag="Bank9"/>
+        <Button x:Name="F10"
+                Grid.Row="0"
+				Grid.Column="20"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F10"
+                Tag="Bank10"/>
+        <Button x:Name="F11"
+                Grid.Row="0"
+				Grid.Column="22"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F11"
+                Tag="Bank11"/>
+        <Button x:Name="F12"
+                Grid.Row="0"
+				Grid.Column="24"
+				Grid.ColumnSpan="2"
+	 			Style="{StaticResource Bank}"
+                Content="F12"
+                Tag="Bank12"/>
+        <Button x:Name="Oem3"
+                Grid.Row="1"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="`"
+                Tag="0"/>
+        <Button x:Name="Oem3h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music0"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D1"
+                Grid.Row="1"
+				Grid.Column="2"
+				Grid.ColumnSpan="2"
+                Content="1"
+                Tag="1"
+                Style="{StaticResource Main}"/>
+        <Button x:Name="D1h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music1"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D2"
+                Grid.Row="1"
+				Grid.Column="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="2"
+                Tag="2"/>
+        <Button x:Name="D2h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music2"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D3"
+                Grid.Row="1"
+				Grid.Column="6"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="3"
+                Tag="3"/>
+        <Button x:Name="D3h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music3"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D4"
+                Grid.Row="1"
+				Grid.Column="8"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="4"
+                Tag="4"/>
+        <Button x:Name="D4h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music4"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D5"
+                Grid.Row="1"
+				Grid.Column="10"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="5"
+                Tag="5"/>
+        <Button x:Name="D5h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music5"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D6"
+                Grid.Row="1"
+				Grid.Column="12"
+				Grid.ColumnSpan="2"
+                Content="6"
+                Style="{StaticResource Main}"
+                Tag="6"/>
+        <Button x:Name="D6h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music6"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D7"
+                Grid.Row="1"
+				Grid.Column="14"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="7"
+                Tag="7"/>
+        <Button x:Name="D7h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music7"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D8"
+                Grid.Row="1"
+				Grid.Column="16"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="8"
+                Tag="8"/>
+        <Button x:Name="D8h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music8"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D9"
+                Grid.Row="1"
+				Grid.Column="18"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="9"
+                Tag="9"/>
+        <Button x:Name="D9h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music9"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D0"
+                Grid.Row="1"
+				Grid.Column="20"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="0"
+                Tag="10"/>
+        <Button x:Name="D0h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music10"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemMinus"
+                Grid.Row="1"
+				Grid.Column="22"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="-"
+                Tag="11"/>
+        <Button x:Name="OemMinush"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music11"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemPlus"
+                Grid.Row="1"
+				Grid.Column="24"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="+"
+                Tag="12"/>
+        <Button x:Name="OemPlush"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music12"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Oem5"
+                Grid.Row="1"
+				Grid.Column="26"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="\"
+                Tag="13"/>
+        <Button x:Name="Oem5h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music13"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Back"
+                Grid.Row="1"
+				Grid.Column="28"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="←"
+                Tag="14"/>
+        <Button x:Name="Backh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music14"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Tab"
+                Grid.Row="2"
+				Grid.Column="0"
+				Grid.ColumnSpan="4"
+                Style="{StaticResource Main}"
+                Content="Tab"
+                Tag="15"
+                Width="145"/>
+        <Button x:Name="Tabh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music15"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Q"
+                Grid.Row="2"
+				Grid.Column="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="Q"
+                Tag="16"/>
+        <Button x:Name="Qh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music16"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="W"
+                Grid.Row="2"
+				Grid.Column="6"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="W"
+                Tag="17"/>
+        <Button x:Name="Wh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music17"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="E"
+                Grid.Row="2"
+				Grid.Column="8"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="E"
+                Tag="18"/>
+        <Button x:Name="Eh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music18"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="R"
+                Grid.Row="2"
+				Grid.Column="10"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="R"
+                Tag="19"/>
+        <Button x:Name="Rh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music19"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="T"
+                Grid.Row="2"
+				Grid.Column="12"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="T"
+                Tag="20"/>
+        <Button x:Name="Th"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music20"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Y"
+                Grid.Row="2"
+				Grid.Column="14"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="Y"
+                Tag="21"/>
+        <Button x:Name="Yh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music21"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="U"
+                Grid.Row="2"
+				Grid.Column="16"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="U"
+                Tag="22"/>
+        <Button x:Name="Uh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music22"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="I"
+                Grid.Row="2"
+				Grid.Column="18"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="I"
+                Tag="23"/>
+        <Button x:Name="Ih"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music23"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="O"
+                Grid.Row="2"
+				Grid.Column="20"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="O"
+                Tag="24"/>
+        <Button x:Name="Oh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music24"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="P"
+                Grid.Row="2"
+				Grid.Column="22"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="P"
+                Tag="25"/>
+        <Button x:Name="Ph"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music25"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemOpenBrackets"
+                Grid.Row="2"
+				Grid.Column="24"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="["
+                Tag="26"/>
+        <Button x:Name="OemOpenBracketsh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music26"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Oem6"
+                Grid.Row="2"
+				Grid.Column="26"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Content="]"
+                Tag="27"/>
+        <Button x:Name="Oem6h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music27"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Capital"
+                Content="Caps"
+                Grid.Column="0"
+                Grid.Row="3"
+				Grid.ColumnSpan="4"
+                Width="145"
+                Style="{StaticResource Main}"
+                Tag="28"/>
+        <Button x:Name="Capitalh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music28"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="A"
+                Content="A"
+                Grid.Column="4"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="29"/>
+        <Button x:Name="Ah"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music29"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="S"
+                Content="S"
+                Grid.Column="6"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="30"/>
+        <Button x:Name="Sh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music30"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="D"
+                Content="D"
+                Grid.Column="8"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="31"/>
+        <Button x:Name="Dh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music31"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="F"
+                Content="F"
+                Grid.Column="10"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="32"/>
+        <Button x:Name="Fh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music32"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="G"
+                Content="G"
+                Grid.Column="12"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="33"/>
+        <Button x:Name="Gh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music33"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="H"
+                Content="H"
+                Grid.Column="14"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="34"/>
+        <Button x:Name="Hh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music34"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="J"
+                Content="J"
+                Grid.Column="16"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="35"/>
+        <Button x:Name="Jh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music35"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="K"
+                Content="k"
+                Grid.Column="18"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="36"/>
+        <Button x:Name="Kh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music36"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="L"
+                Content="L"
+                Grid.Column="20"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="37"/>
+        <Button x:Name="Lh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music37"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Oem1"
+                Content=";"
+                Grid.Column="22"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+               Tag="38"/>
+        <Button x:Name="Oem1h"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music38"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemQuotes"
+                Content="&quot;"
+                Grid.Column="24"
+                Grid.Row="3"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="39"/>
+        <Button x:Name="OemQuotesh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music39"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Return"
+                Content="Enter"
+                Grid.Column="26"
+                Grid.Row="3"
+				Grid.ColumnSpan="4"
+                Width="135"
+                Style="{StaticResource Main}"
+                Tag="40"/>
+        <Button x:Name="Returnh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music40"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="LeftShift"
+                Content="Shift"
+                Grid.Column="0"
+                Grid.Row="4"
+				Grid.ColumnSpan="5"
+                Width="185"
+                Style="{StaticResource Main}"
+                Tag="41"/>
+        <Button x:Name="LeftShifth"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music41"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="Z"
+                Content="Z"
+                Grid.Column="5"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="42"/>
+        <Button x:Name="Zh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music42"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="X"
+                Content="X"
+                Grid.Column="7"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="43"/>
+        <Button x:Name="Xh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music43"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="C"
+                Content="C"
+                Grid.Column="9"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="44"/>
+        <Button x:Name="Ch"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music44"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="V"
+                Content="V"
+                Grid.Column="11"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="45"/>
+        <Button x:Name="Vh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music45"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="B"
+                Content="B"
+                Grid.Column="13"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="46"/>
+        <Button x:Name="Bh"
+               Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music46"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="N"
+                Content="N"
+                Grid.Column="15"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="47"/>
+        <Button x:Name="Nh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music47"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="M"
+                Content="M"
+                Grid.Column="17"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="48"/>
+        <Button x:Name="Mh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music48"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemComma"
+                Content=","
+                Grid.Column="19"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="49"/>
+        <Button x:Name="OemCommah"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music49"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemPeriod"
+                Content="."
+                Grid.Column="21"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="50"/>
+        <Button x:Name="OemPeriodh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music50"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="OemQuestion"
+                Content="/"
+                Grid.Column="23"
+                Grid.Row="4"
+				Grid.ColumnSpan="2"
+                Style="{StaticResource Main}"
+                Tag="51"/>
+        <Button x:Name="OemQuestionh"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music51"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="RightShift"
+                Content="Shift"
+                Grid.Column="25"
+                Grid.Row="4"
+				Grid.ColumnSpan="5"
+                Width="185"
+                Style="{StaticResource Main}"
+                Tag="52"/>
+        <Button x:Name="RightShifth"
+                Style="{StaticResource buttonset}">
+            <MediaElement x:Name="Music52"
+                          Style="{StaticResource Player}"/>
+        </Button>
+        <Button x:Name="LeftCtrl"
+                Content="Record(Ctrl)"
+                Grid.Column="5"
+                Grid.Row="5"
+				Grid.ColumnSpan="4"
+                Width="130"
+                FontSize="19"
+                Style="{StaticResource Origin}"
+                Click="LeftCtrl_Click" Margin="40,10,0,11"/>
+        <Button x:Name="Space"
+                Grid.Column="9"
+                Grid.Row="5"
+				Grid.ColumnSpan="11"
+                Width="451"
+                Content="Repeat(Space)"
+                Style="{StaticResource Origin}" Margin="17,10,0,11">
+        </Button>
+        <Button x:Name="RightCtrl"
+                Content="Stop(Ctrl)"
+                Grid.Column="20"
+                Grid.Row="5"
+				Grid.ColumnSpan="4"
+                Width="140"
+                Style="{StaticResource Origin}"
+                DataContext="a[i]" Click="RightCtrl_Click" RenderTransformOrigin="0.971,-0.014" Margin="10,10,19,11"/>
+        <my:MyButton x:Name="ButtonBack"
+                Grid.Row="5"
+                Grid.Column="24"
+                Content="Background   ->"
+                     
+                BorderThickness="3"     
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Foreground="DarkGray"
+                     
+                FontSize="13"
+                IsHitTestVisible="False" Grid.ColumnSpan="4" Margin="7,10,7,48"
+                Background="{DynamicResource BackCol}"
+                BorderBrush="Transparent"
+                Visibility="Hidden"
+                Checkview="False"  />
+        <Button x:Name="ButtonBorder"
+                Grid.Column="24"
+                Grid.Row="5"
+                Content="Border   ->"  
+                
+                BorderThickness="3"
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Foreground="DarkGray"
+                
+                FontSize="13"
+                IsHitTestVisible="False" Grid.ColumnSpan="4" Margin="7,49,7,10"
+                Background="{DynamicResource BorderCol}"
+                BorderBrush="Transparent"
+                Visibility="{Binding ElementName=ButtonBack, Path=Visibility}"/>
+        <xctk:ColorPicker x:Name="BackColor" 
+                          Grid.Row="5"
+                          Grid.Column="28"
+                          DisplayColorAndName="True"
+                          AvailableColorsSortingMode="HueSaturationBrightness" 
+                          Grid.ColumnSpan="2" Margin="7,10,8,48"
+                          SelectedColor="#FFDCEDC1"
+                          Visibility="{Binding ElementName=ButtonBack, 
+                                                Path=Visibility}"
+                          Cursor="Pen"
+                          Opacity="0.05"/>
+        <xctk:ColorPicker x:Name="BorderColor" 
+                          Grid.Row="5"
+                          Grid.Column="28"
+                          DisplayColorAndName="True"
+                          AvailableColorsSortingMode="HueSaturationBrightness" 
+                          RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" 
+                          Margin="7,50,8,10"
+                          SelectedColor="GhostWhite"
+                          Visibility="{Binding ElementName=ButtonBack, 
+                                                Path=Visibility}"
+                          Cursor="Pen"
+                          Opacity="0.05"/>
+        <Slider x:Name="Volumebar"
+                Grid.Row="5" Grid.ColumnSpan="4" Margin="14,34,27,33"
+                ValueChanged="Sliderbar_ValueChanged"
+                Maximum="1"
+                IsMoveToPointEnabled="True"
+                Minimum="0"
+                Visibility="Hidden" 
+                Cursor="Hand"/>
+        <Slider x:Name="Balancebar"
+                Grid.Row="5" Grid.ColumnSpan="4" Margin="14,34,27,33"
+                ValueChanged="Sliderbar_ValueChanged"
+                Maximum="1"
+                Minimum="-1"
+                IsMoveToPointEnabled="True"
+                Visibility="Hidden"
+                Cursor="Hand"/>
+        <Slider x:Name="Speedbar"
+                Grid.Row="5" Grid.ColumnSpan="4" Margin="14,34,27,33"
+                ValueChanged="Sliderbar_ValueChanged"
+                Maximum="1.5"
+                IsMoveToPointEnabled="True"
+                Minimum="0.5"
+                Visibility="Hidden"
+                Cursor="Hand"/>
+        <Button x:Name="OK"
+                Style="{StaticResource Origin}"
+                Click="OK_Click"
+                Visibility="Hidden"
+                Content="OK" Grid.ColumnSpan="2" Grid.Column="3" Margin="33,16,0,17" Grid.Row="5" Height="Auto" Width="Auto"/>
+    </Grid>
+</Window>

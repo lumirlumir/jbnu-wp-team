@@ -1,0 +1,122 @@
+﻿<Window x:Class="Player.ColorPick"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Player"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="ColorPick" Height="180" Width="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="StartButton"
+                Visibility="Collapsed"
+                BorderBrush="AliceBlue"
+                Foreground="White"
+                Background="AntiqueWhite"/>
+        <Button Content="Button Color Change"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                FontSize="18"
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Foreground="Gray"
+                Background="White"
+                BorderBrush="Transparent"
+                IsHitTestVisible="False" />
+        <Button x:Name="Back"
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="Background   ->"
+                FontSize="13"
+                FontFamily="Ink Free"
+                Foreground="Black"
+                FontWeight="Bold"
+                BorderBrush="Transparent"
+                BorderThickness="3"
+                IsHitTestVisible="False"/>
+        <Button x:Name="Border"
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="Border   ->"
+                FontSize="13"
+                FontFamily="Ink Free"
+                Foreground="Black"
+                FontWeight="Bold"
+                BorderBrush="Transparent"
+                BorderThickness="3"
+                IsHitTestVisible="False" />
+        <Button x:Name="Confirm"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="Confirm"
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Background="White"
+                Foreground="Gray"
+                BorderBrush="Transparent"
+                FontSize="18"
+                Cursor="Hand"
+                Click="Confirm_Click"/>
+        <Button x:Name="Delet"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="Set Color to Default"
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Background="White"
+                Foreground="Gray"
+                BorderBrush="Transparent"
+                FontSize="18"
+                Cursor="Hand"
+                Click="Reset_Click"/>
+        <Button x:Name="All"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Content="AllChange"
+                FontFamily="Ink Free"
+                FontWeight="Bold"
+                Background="White"
+                Foreground="Gray"
+                BorderBrush="Transparent"
+                FontSize="18"
+                Cursor="Hand"
+                Click="Confirm_Click"/>
+        <xctk:ColorPicker x:Name="BorderColor" 
+                          Grid.Row="2"
+                          Grid.Column="1"
+                          DisplayColorAndName="True" 
+                          SelectedColorChanged="BorderColor_SelectedColorChanged"
+                          AvailableColorsSortingMode="HueSaturationBrightness"
+                                  
+                          Background="White"
+                          BorderBrush="GhostWhite"
+                          Cursor="Pen" 
+                          Opacity="0"/>
+        <xctk:ColorPicker x:Name="BackColor" 
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          DisplayColorAndName="True" 
+                          SelectedColorChanged="BackColor_SelectedColorChanged"
+                          AvailableColorsSortingMode="HueSaturationBrightness"
+                          
+                          Background="White"
+                          BorderBrush="GhostWhite" 
+                          Cursor="Pen"
+                          Opacity="0"/>
+    </Grid>
+</Window>

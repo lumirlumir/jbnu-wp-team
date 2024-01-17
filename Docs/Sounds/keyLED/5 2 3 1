@@ -1,0 +1,218 @@
+o 2 2 a 0
+o 2 3 a 72
+d 50
+o 1 3 a 72
+o 2 3 a 9
+o 3 3 a 72
+d 50
+o 1 3 a 9
+o 2 3 a 13
+o 3 3 a 9
+o 4 3 a 72
+o mc 3 a 72
+d 50
+o 1 3 a 13
+o 2 3 a 25
+o 3 3 a 13
+o 4 3 a 9
+o 5 3 a 72
+o mc 3 a 9
+d 50
+o 1 3 a 25
+o 2 3 a 37
+o 3 3 a 25
+o 4 3 a 13
+o 5 3 a 9
+o 6 3 a 72
+o mc 3 a 13
+d 50
+o 1 3 a 37
+o 2 3 a 41
+o 3 3 a 37
+o 4 3 a 25
+o 5 3 a 13
+o 6 3 a 9
+o 7 3 a 72
+o mc 3 a 25
+d 50
+o 1 3 a 41
+o 2 3 a 46
+o 3 3 a 41
+o 4 3 a 37
+o 5 3 a 25
+o 6 3 a 13
+o 7 3 a 9
+o 8 3 a 72
+o mc 3 a 37
+d 50
+o 1 3 a 46
+o 2 3 a 54
+o 3 3 a 46
+o 4 3 a 41
+o 5 3 a 37
+o 6 3 a 25
+o 7 3 a 13
+o 8 3 a 9
+o mc 3 a 41
+o mc 22 a 72
+d 50
+o 1 3 a 54
+o 2 3 a 57
+o 3 3 a 54
+o 4 3 a 46
+o 5 3 a 41
+o 6 3 a 37
+o 7 3 a 25
+o 8 3 a 13
+o mc 3 a 46
+o mc 22 a 9
+d 50
+o 1 3 a 57
+o 2 3 a 72
+o 3 3 a 57
+o 4 3 a 54
+o 5 3 a 46
+o 6 3 a 41
+o 7 3 a 37
+o 8 3 a 25
+o mc 3 a 54
+o mc 22 a 13
+d 50
+o 1 3 a 72
+o 2 3 a 9
+o 3 3 a 72
+o 4 3 a 57
+o 5 3 a 54
+o 6 3 a 46
+o 7 3 a 41
+o 8 3 a 37
+o mc 3 a 57
+o mc 22 a 25
+d 50
+o 1 3 a 9
+o 2 3 a 13
+o 3 3 a 9
+o 4 3 a 72
+o 5 3 a 57
+o 6 3 a 54
+o 7 3 a 46
+o 8 3 a 41
+o mc 3 a 72
+o mc 22 a 37
+d 50
+o 1 3 a 13
+o 2 3 a 25
+o 3 3 a 13
+o 4 3 a 9
+o 5 3 a 72
+o 6 3 a 57
+o 7 3 a 54
+o 8 3 a 46
+o mc 3 a 9
+o mc 22 a 41
+d 50
+o 1 3 a 25
+o 2 3 a 37
+o 3 3 a 25
+o 4 3 a 13
+o 5 3 a 9
+o 6 3 a 72
+o 7 3 a 57
+o 8 3 a 54
+o mc 3 a 13
+o mc 22 a 46
+d 50
+o 1 3 a 37
+o 2 3 a 41
+o 3 3 a 37
+o 4 3 a 25
+o 5 3 a 13
+o 6 3 a 9
+o 7 3 a 72
+o 8 3 a 57
+o mc 3 a 25
+o mc 22 a 54
+d 50
+o 1 3 a 41
+o 2 3 a 46
+o 3 3 a 41
+o 4 3 a 37
+o 5 3 a 25
+o 6 3 a 13
+o 7 3 a 9
+o 8 3 a 72
+o mc 3 a 37
+o mc 22 a 57
+d 50
+o 1 3 a 46
+o 2 3 a 54
+o 3 3 a 46
+o 4 3 a 41
+o 5 3 a 37
+o 6 3 a 25
+o 7 3 a 13
+o 8 3 a 9
+o mc 3 a 41
+o mc 22 a 72
+d 50
+o 1 3 a 54
+o 2 3 a 57
+o 3 3 a 54
+o 4 3 a 46
+o 5 3 a 41
+o 6 3 a 37
+o 7 3 a 25
+o 8 3 a 13
+o mc 3 a 46
+o mc 22 a 9
+d 50
+o 1 3 a 57
+o 2 3 a 0
+o 3 3 a 57
+o 4 3 a 54
+o 5 3 a 46
+o 6 3 a 41
+o 7 3 a 37
+o 8 3 a 25
+o mc 3 a 54
+o mc 22 a 13
+d 50
+o 1 3 a 0
+o 3 3 a 0
+o 4 3 a 57
+o 5 3 a 54
+o 6 3 a 46
+o 7 3 a 41
+o 8 3 a 37
+o mc 3 a 57
+o mc 22 a 25
+d 50
+o 4 3 a 0
+o 5 3 a 57
+o 6 3 a 54
+o 7 3 a 46
+o 8 3 a 41
+o mc 3 a 0
+o mc 22 a 37
+d 50
+o 5 3 a 0
+o 6 3 a 57
+o 7 3 a 54
+o 8 3 a 46
+o mc 22 a 41
+d 50
+o 6 3 a 0
+o 7 3 a 57
+o 8 3 a 54
+o mc 22 a 46
+d 50
+o 7 3 a 0
+o 8 3 a 57
+o mc 22 a 54
+d 50
+o 8 3 a 0
+o mc 22 a 57
+d 50
+o 8 3 a 0
+o mc 22 a 0
+d 50
