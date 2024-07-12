@@ -1,0 +1,14 @@
+# Build results(bin 폴더에는 빌드된 바이너리 파일들이 포함되어 있습니다.)(obj 폴더에는 빌드 중간 파일들이 포함되어 있습니다.)
+bin/
+obj/
+
+# NuGet packages(NuGet 패키지들은 소스 제어에 포함할 필요가 없으며, packages.config 파일만 포함하면 됩니다.)
+packages/
+
+# Build artifacts(빌드 과정에서 생성된 파일들로, 소스 제어에 포함할 필요가 없습니다.)
+*.dll
+*.exe
+*.pdb
+*.cache
+*.lref
+*.csproj.user
