@@ -12,3 +12,6 @@ packages/
 *.cache
 *.lref
 *.csproj.user
+
+# VScode
+*.code-workspace
