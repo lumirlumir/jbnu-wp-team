@@ -213,38 +213,38 @@ MENU 버튼에는 각각 `Stop`, `Repeat`, `Record` 3가지 기능이 있습니�
 
 시연 동영상 등 상세 내역은 [PPT](./Docs/PPT.pptx)를 참고해주세요.
 
-![6](./docs/README/6.png)
+![6](./Docs/README/6.png)
 
 ### 4-1. 목차
 
-![7](./docs/README/7.png)
+![7](./Docs/README/7.png)
 
 ### 4-2. 소프트웨어 소개
 
-![8](./docs/README/8.png)
-![9](./docs/README/9.png)
-![10](./docs/README/10.png)
-![11](./docs/README/11.png)
-![12](./docs/README/12.png)
-![13](./docs/README/13.png)
-![14](./docs/README/14.png)
-![15](./docs/README/15.png)
-![16](./docs/README/16.png)
-![17](./docs/README/17.png)
-![18](./docs/README/18.png)
-![19](./docs/README/19.png)
-![20](./docs/README/20.png)
+![8](./Docs/README/8.png)
+![9](./Docs/README/9.png)
+![10](./Docs/README/10.png)
+![11](./Docs/README/11.png)
+![12](./Docs/README/12.png)
+![13](./Docs/README/13.png)
+![14](./Docs/README/14.png)
+![15](./Docs/README/15.png)
+![16](./Docs/README/16.png)
+![17](./Docs/README/17.png)
+![18](./Docs/README/18.png)
+![19](./Docs/README/19.png)
+![20](./Docs/README/20.png)
 
 ### 4-3. 구현 방법 소개
 
-![21](./docs/README/21.png)
-![22](./docs/README/22.png)
-![23](./docs/README/23.png)
-![24](./docs/README/24.png)
+![21](./Docs/README/21.png)
+![22](./Docs/README/22.png)
+![23](./Docs/README/23.png)
+![24](./Docs/README/24.png)
 
 ### 4-4. 한계 및 보완 방안
 
-![25](./docs/README/25.png)
+![25](./Docs/README/25.png)
 
 Project Proposal에서 교수님이 2가지를 지적하였습니다.
 
@@ -258,7 +258,7 @@ Project Proposal에서 교수님이 2가지를 지적하였습니다.
 
     이 부분은, 입문자분들도 쉽고 재밌게 사용할 수 있는 프로그램을 만들자는 저희의 프로그램 개발 의도와 맞지 않기 때문에 배제하였습니다. 저희는 입문자 분들에게 기술적으로 어려울 수 있는 '외장악기와의 연결', ‘이펙터 적용’, ‘사운드 파형 편집’ 기능 등은 그 난이도로 인하여 프로그램 계획시 고려하지 않았습니다.
 
-![26](./docs/README/26.png)
+![26](./Docs/README/26.png)
 
 키보드 런치 패드에는 몇가지 한계점이 있습니다.
 
@@ -270,7 +270,7 @@ Project Proposal에서 교수님이 2가지를 지적하였습니다.
 
     이 기능은 해당하는 버튼이 어떠한 사운드 소스를 사용하는지 파일명을 확인하는 기능입니다. 구현 방식의 문제로 상당한 렉을 동반하여 구현하지 못하였습니다. 이 기능은 훗날 'Hovering' 기능으로도 구현할 예정으로, 해당 버튼에 마우스를 갖다 댔을 때 어떤 사운드소스를 이용하고 있는지 바로 확인할 수 있게 할 것입니다.
 
-3. API 미사용
+3. API 미사용.
 
     SoundCloud API를 이용하려고 했지만, SoundCloud가 API Key 제공을 막아 이용이 불가능헸습니다. 다른 음악 관련 API를 모색해 보았지만 마땅한 곳이 없어 API는 구현하지 못하였습니다.
 
