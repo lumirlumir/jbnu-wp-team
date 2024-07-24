@@ -13,5 +13,8 @@ packages/
 *.lref
 *.csproj.user
 
+# Visual Studio 관련 파일 및 디렉토리
+.vs/
+
 # VScode
 *.code-workspace
